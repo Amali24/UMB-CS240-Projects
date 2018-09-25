@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int main(){
     char c;
     int newline = 0;
@@ -10,7 +9,7 @@ int main(){
         }
         if (c == '\n' && newline == 0){
             newline = 1;
-            putchar('\n');
+            putchar(c);
             continue;
         }
         while (newline == 1 && c == '\n'){
