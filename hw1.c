@@ -16,7 +16,7 @@ the input file and output_file as the name of the output file.
 
 int main(){
     char c;
-    short int newline = 0;
+    int newline = 0;
     while(1){
         c = getchar();
         if (c == EOF){
