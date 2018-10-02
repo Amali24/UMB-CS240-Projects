@@ -11,8 +11,7 @@
 #define MAXLEN 10000
 
 
-char[][] splitString(char s[], char d){
-    char word[MAXLEN][MAXLEN];
+void splitString(char s[], char d, char** word){
     // implement the splitting algorithm
     // now reading string s to extract words
     int n = 0; // order of the word in the string
@@ -62,7 +61,7 @@ char[][] splitString(char s[], char d){
     // so tht I print them, when seeing this special word, I know
     // I must stop
     word[n+1][0] = EOF;
-    return word;
+    return;
 
 }
 
@@ -90,8 +89,8 @@ int main(){
     d = getchar();
 
     // after I know d and s I am now calling the function
-    char word[MAXLEN][MAXLEN]; // word[n] is the (n+1)th word in the string
-    word = splitString(s, d);
+    char **word; // word[n] is the (n+1)th word in the string
+    splitString(s, d, word);
 
     // print the words
     int n = 0;
