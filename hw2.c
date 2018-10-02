@@ -1,8 +1,8 @@
 //
-// hw.2
+//  hw2.c
+//  
 //
-//
-// Created by Andrew Thomas on 10/1/18
+//  Created by Andrew Thomas on 10/1/18.
 //
 //
 
@@ -11,96 +11,95 @@
 #define MAXLEN 10000
 
 
-char[][] splitString(char[] s, char d){
-    // implement the splitting algorithm
+char[][] splitString(char[] s, char d) {
+    char word[MAXLEN][MAXLEN];
+    // implement the splitting requirement
     // now reading string s to extract words
-
     int n = 0; // order of the word in the string
-    int i = 0;     // position in string s
-    int j = 0; // position in word
-    char c;
-
+    i=0; // position in string s
+    int j=0; // position in word
+    
     // check if s is empty
-
-    if (s[0] == 0){
+    
+    if (s[0]==0) {
         // s is empty
-        word[0][0] = 0;
-
+        word[0][0]=0;
+        
     }
-    while(1){
+    
+    
+    while (1) {
         c = s[i];
-            
-
-        if (c == d){
+        
+        if (c==d) {
             // see the delimiter char
-            word[n][j] = 0; // null character
-            j = 0;
+            word[n][j]=0; // null character
+            j=0;
             n++; // ready for next word
         }
-        else{
-            word[n][j] = c;
+        else {
+            word[n][j]=c;
             j++;
         }
         i++;
-
+        
         // is this the last character of string s
-        if (s[i] == 0){
+        if (s[i]==0) {
             // check if previous character is delimiter or not
-            if (c == d){
-                // previous character is the same as delimiter
-                word[n][0] = 0; // empty word
+            if (c == d) {
+                // previous character is same as delimiter
+                word[n][0]=0; // empty word
             }
             else {
                 break;
             }
         }
-    
+        
     }
-
+    
     // so far we have (n+1) words: word[0], word[1], ..., word[n]
     // create a special word to make the end of the list of words
-    // so tht I print them, when seeing this special word, I know
-    // I must stop
-    word[n+1][0] = EOF;
+    // so that I print them, when seeing this special word, I know I must stop
+    word[n+1][0]=EOF;
     return word;
-
 }
 
-int main(){
-    char s[MAXLEN]; // String input
-    char d;         // Delimiter
-
+int main() {
+    char s[MAXLEN]; // string input
+    char d; // delimiter
+    
     // read input from stdinput
     char c;
     int i = 0;
-    while(1){
-        c = getchar();
-        if (c == '\n'){
-            // Reach end of first line
+    while(1) {
+        c= getchar();
+        if (c== '\n') {
+            // reach end of first line
             break;
         }
-        else{
-            s[i] = c;
+        else {
+            s[i]=c;
             i++;
         }
     }
-    s[i] = 0; // same as '\0'
-
+    s[i]=0; // same as '\0'
+    
     // read the delimiter from stdin
     d = getchar();
-
-    // after I know d and s I am now calling the function
-    char **word; // word[n] is the (n+1)th word in the string
-    splitString(s, d, word);
-
+    
+    // after I know d and s, I am now calling the function
+    char word[MAXLEN][MAXLEN]; // word[n] is the (n+1)th word in the string
+    word = splitString(s, d);
+    
     // print the words
-    int n = 0;
-    while(1){
-
-        if (word[n][0] == EOF) break;
-
-        printf("%s\n", word[n]);
+    int n=0;
+    while(1) {
+        
+        if (word[n][0]==EOF) break;
+        
+        printf("s\n", word[n]);
         n++;
         // we need to break out of this loop somehow
-    }
+        
+    }   
 }
