@@ -7,33 +7,19 @@
 //
 
 #include <stdio.h>
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include <stdlib.h>
-=======
->>>>>>> 4f43b12177ce0c47a69d83d8e8d10e2beee07d9a
-=======
->>>>>>> 4f43b12177ce0c47a69d83d8e8d10e2beee07d9a
 
 #define MAXLEN 10000
 
 
-void splitString(char s[], char d, char** word){
+char[][] splitString(char[] s, char d){
     // implement the splitting algorithm
     // now reading string s to extract words
+
     int n = 0; // order of the word in the string
     int i = 0;     // position in string s
     int j = 0; // position in word
     char c;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    word = malloc(MAXLEN * MAXLEN * sizeof(char));
-
-=======
->>>>>>> 4f43b12177ce0c47a69d83d8e8d10e2beee07d9a
-=======
->>>>>>> 4f43b12177ce0c47a69d83d8e8d10e2beee07d9a
     // check if s is empty
 
     if (s[0] == 0){
@@ -76,7 +62,7 @@ void splitString(char s[], char d, char** word){
     // so tht I print them, when seeing this special word, I know
     // I must stop
     word[n+1][0] = EOF;
-    return;
+    return word;
 
 }
 
