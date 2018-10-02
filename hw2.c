@@ -7,12 +7,13 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAXLEN 10000
 
 
 char** splitString(char s[], char d) {
-    char word[MAXLEN][MAXLEN];
+    char** word = malloc(MAXLEN * MAXLEN * sizeof(char));
     // implement the splitting requirement
     // now reading string s to extract words
     int n = 0; // order of the word in the string
@@ -97,7 +98,11 @@ int main() {
         
         if (word[n][0]==EOF) break;
         
-        printf("s\n", word[n]);
+        int i = 0;
+
+        while (word[n][i] != 0){
+            printf("%c", word[n][i]);
+        }
         n++;
         // we need to break out of this loop somehow
         
