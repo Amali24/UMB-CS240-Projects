@@ -13,22 +13,22 @@
 
 
 char** splitString(char s[], char d) {
-    printf("entered splitString\n");
+    //printf("entered splitString\n");
     char **word  = malloc(100 * sizeof(char*));
     for (int i = 0; i < 100; i++){
         word[i] = malloc(MAXLEN * sizeof(char));
     }
-    printf("allocated memory\n");
+    //printf("allocated memory\n");
     // implement the splitting requirement
     // now reading string s to extract words
     int n = 0; // order of the word in the string
-    printf("made word iterator\n");
+    //printf("made word iterator\n");
     int i=0; // position in string s
-    printf("iterator for string\n");
+    //printf("iterator for string\n");
     int j=0; // position in word
-    printf("iterator for word\n");
+    //printf("iterator for word\n");
     char c;
-    printf("made temp char\n");
+    //printf("made temp char\n");
     // check if s is empty
     
     if (s[0] == 0) {
@@ -40,23 +40,23 @@ char** splitString(char s[], char d) {
     
     
     while (1) {
-        printf("in the while loop\n");
+        //printf("in the while loop\n");
         c = s[i];
-        printf("c = %c\n", s[i]);
+        //printf("c = %c\n", s[i]);
         
         if (c==d) {
-            printf("saw delimeter\n");
+            //printf("saw delimeter\n");
             // see the delimiter char
             word[n][j]=0; // null character
-            printf("put in a nullchar\n");
+            //printf("put in a nullchar\n");
             j=0;
             n++; // ready for next word
-            printf("moving to next word\n");
+            //printf("moving to next word\n");
         }
         else {
-            printf("in the else\n");
+            //printf("in the else\n");
             word[n][j]=c;
-            printf("word[%d][%d] = %c\n", n, j, c);
+            //printf("word[%d][%d] = %c\n", n, j, c);
             j++;
         }
         i++;
@@ -84,63 +84,64 @@ char** splitString(char s[], char d) {
 
 int main() {
     char s[MAXLEN]; // string input
-    printf("created string in main\n");
+    //printf("created string in main\n");
 
     char d; // delimiter
-    printf("created del character in main\n");
+    //printf("created del character in main\n");
     
     // read input from stdinput
     char c;
-    printf("created temp char in main\n");
+    //printf("created temp char in main\n");
     int i = 0;
-    printf("created iterator in main\n");
+    //printf("created iterator in main\n");
     while(1) {
-        printf("entered while loop\n");
+        //printf("entered while loop\n");
         c = getchar();
-        printf("got %c from input\n", c);
+        //printf("got %c from input\n", c);
         if (c == '\n') {
-            printf("found end of line\nbreaking loop\n");
+            //printf("found end of line\nbreaking loop\n");
             // reach end of first line
             break;
         }
         else {
             s[i]=c;
-            printf("added to string\n");
+            //printf("added to string\n");
             i++;
-            printf("incremented iterator\n");
+            //printf("incremented iterator\n");
         }
     }
     s[i]=0; // same as '\0'
-    printf("added null to the end\n");
+    //printf("added null to the end\n");
     
     // read the delimiter from stdin
     d = getchar();
-    printf("stored delimeter\n");
+    //printf("stored delimeter\n");
     
     // after I know d and s, I am now calling the function
     char** word; // word[n] is the (n+1)th word in the string
-    printf("created 2d pointer\n");
+    //printf("created 2d pointer\n");
     word = splitString(s, d);
-    printf("successfully called splitString()");
+    //printf("successfully called splitString()");
     
     // print the words
     int n=0;
-    printf("made new word iterator\n");
+    //printf("made new word iterator\n");
     while(1) {
         
         if (word[n][0]==EOF){
-            printf("found EOF\n");
+            //printf("found EOF\n");
             break;
         }
         
         int i = 0;
-        printf("made new iterator for letters\n");
+        //printf("made new iterator for letters\n");
 
         while (word[n][i] != 0){
             printf("%c", word[n][i]);
             i++;
         }
-        printf("moving to next word\n");
-        n++;        
+        //printf("moving to next word\n");
+        n++;
+        printf("\n");     
     }   
 }
