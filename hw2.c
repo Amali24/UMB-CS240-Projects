@@ -32,7 +32,7 @@ char** splitString(char s[], char d) {
     // check if s is empty
     
     if (s[0] == 0) {
-        printf("s was empty\n");
+        printf("empty");
         // s is empty
         word[0][0]=0;
         
