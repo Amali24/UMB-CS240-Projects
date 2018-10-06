@@ -14,7 +14,10 @@
 
 char** splitString(char s[], char d) {
     printf("entered splitString\n");
-    char **word  = malloc(100000 * sizeof(char));
+    char **word  = malloc(100 * sizeof(char*));
+    for (int i = 0; i < 100; i++){
+        word[i] = malloc(MAXLEN * sizeof(char));
+    }
     printf("allocated memory\n");
     // implement the splitting requirement
     // now reading string s to extract words
@@ -53,7 +56,7 @@ char** splitString(char s[], char d) {
         else {
             printf("in the else\n");
             word[n][j]=c;
-            printf("word[%d][%d] = %c", n, j, c);
+            printf("word[%d][%d] = %c\n", n, j, c);
             j++;
         }
         i++;
@@ -95,7 +98,7 @@ int main() {
         printf("entered while loop\n");
         c = getchar();
         printf("got %c from input\n", c);
-        if (c== '\n') {
+        if (c == '\n') {
             printf("found end of line\nbreaking loop\n");
             // reach end of first line
             break;
@@ -104,7 +107,7 @@ int main() {
             s[i]=c;
             printf("added to string\n");
             i++;
-            printf("incremented iterator");
+            printf("incremented iterator\n");
         }
     }
     s[i]=0; // same as '\0'
@@ -135,6 +138,7 @@ int main() {
 
         while (word[n][i] != 0){
             printf("%c", word[n][i]);
+            i++;
         }
         printf("moving to next word\n");
         n++;        
