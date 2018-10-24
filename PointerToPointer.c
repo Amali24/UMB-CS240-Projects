@@ -7,7 +7,7 @@ char** readLines(int *p){
     list_of_lines = (char**) malloc(n * sizeof(char*));
     int i;
     for (i = 0; i < n; i ++){
-        char *line;
+        char *line = (char *) malloc(100000);
         if (gets(line) == NULL){
             break; // get a line from stdin
         }
