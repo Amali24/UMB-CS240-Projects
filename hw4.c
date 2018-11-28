@@ -11,6 +11,19 @@ void get_strings(struct STRING *list){
     // linked list given as input
     char *in;
     char cin;
+    int i = 0;
+
+    while(1){
+        cin = getchar();
+        if(cin == ';' ){
+            // next
+            i++;
+        }
+        if (cin == EOF){
+            break;
+        }
+        list[i].s += cin;
+    }
 }
 
 void sort_strings(struct STRING *list){
