@@ -1,0 +1,1 @@
+Min=9, Row=1, Column=1

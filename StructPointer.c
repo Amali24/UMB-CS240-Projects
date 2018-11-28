@@ -20,8 +20,6 @@ void copyList(struct PET *p_source, struct PET *p_dest, int n){
     // copy n elements from array point p_source to array pointer p_dest
     if (p_source == NULL) printf("p_source cannot be NULL");
 
-    // allocate memory to p_dest to represent an array of n elements of stuct PET
-    //class 
     int i;
     for (i = 0; i < n; i++){
         p_dest[i] = p_source[i];
