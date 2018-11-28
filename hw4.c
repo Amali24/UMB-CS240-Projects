@@ -9,7 +9,6 @@ struct STRING{
 void get_strings(struct STRING *list){
     // read from stdin list of strings and store in 
     // linked list given as input
-    char *in;
     char cin;
     int i = 0;
 
@@ -17,6 +16,7 @@ void get_strings(struct STRING *list){
         cin = getchar();
         if(cin == ';' ){
             // next
+            list[i].s += 0;
             i++;
         }
         if (cin == EOF){
@@ -32,6 +32,7 @@ void sort_strings(struct STRING *list){
 
 void show_strings(struct STRING *list){
     // print contents of list
+    printf("%s", list[0].s);
 }
 
 int main(){
