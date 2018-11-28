@@ -32,6 +32,7 @@ void sort_strings(struct STRING *list){
 
 void show_strings(struct STRING *list){
     // print contents of list
+    printf("show_string\n");
     printf("%s", list[0].s);
 }
 
@@ -40,8 +41,10 @@ int main(){
     const int MAX_LINES = 100;
     const int MAX_LENGTH = 1000;
 
+    list = (struct STRING*) malloc(MAX_LINES * sizeof(char*));
+
     for (int i = 0; i < MAX_LINES; i++){
-        list[i].s = malloc(MAX_LENGTH * sizeof(char));
+        list[i].s = (char*) malloc(MAX_LENGTH * sizeof(char));
     }
 
     get_strings(list);
