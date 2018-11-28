@@ -11,18 +11,20 @@ void get_strings(struct STRING *list){
     // linked list given as input
     char cin;
     int i = 0;
+    int j = 0;
 
     while(1){
         cin = getchar();
         if(cin == ';' ){
             // next
-            list[i].s += 0;
+            list[i].s[j] = 0;
+            j = 0;
             i++;
         }
         if (cin == EOF){
             break;
         }
-        list[i].s += cin;
+        list[i].s[j] = cin;
     }
 }
 
