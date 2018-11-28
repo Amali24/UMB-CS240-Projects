@@ -35,7 +35,7 @@ void sort_strings(struct STRING *list){
 void show_strings(struct STRING *list){
     // print contents of list
     printf("show_string\n");
-    printf("%s", list[0].s);
+    printf("%s\n", list[0].s);
 }
 
 int main(){
