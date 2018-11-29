@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct STRING{
     char *s;
@@ -36,8 +37,17 @@ int get_strings(struct STRING *list){
 
 void sort_strings(struct STRING *list, int num_strings){
     // ascendingly sort strings by length
-    for (int i = 0; i < num_strings; i++){
 
+    struct STRING *dummy_ptr = NULL;
+
+    for (int i = 0; i < num_strings; i++){
+        for(int j = i; j < num_strings; j++){
+            if (strlen(list[i].s) > strlen(list[j].s)){
+                dummy_ptr = &list[j];
+                list[j].next = &list[i];
+                list[i].next = dummy_ptr;
+            }
+        }
     }
 }
 
