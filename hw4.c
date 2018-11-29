@@ -38,21 +38,38 @@ int get_strings(struct STRING *list){
 void sort_strings(struct STRING *list, int num_strings){
     // ascendingly sort strings by length
 
-    struct STRING *dummy_ptr = NULL;
-
-    for (int i = 0; i < num_strings; i++){
-        for(int j = i; j < num_strings; j++){
-            if (strlen(list[i].s) > strlen(list[j].s)){
-                dummy_ptr = list[j].next;
-                list[j].next = &list[i];
-                list[i].next = dummy_ptr;
-            }
-        }
-    }
+    int swapped, i; 
+    struct STRING *ptr1; 
+    struct STRING *lptr = NULL; 
+  
+    /* Checking for empty list */
+    if (list->next == NULL) 
+        return; 
+  
+    do
+    { 
+        swapped = 0; 
+        ptr1 = list; 
+  
+        while (ptr1->next != lptr) 
+        { 
+            if (strlen(ptr1->s) > strlen(ptr1->next->s)) 
+            {  
+                char* temp = ptr1->s; 
+                ptr1->s = ptr1->next->s; 
+                ptr1->next->s = temp; 
+                swapped = 1; 
+            } 
+            ptr1 = ptr1->next; 
+        } 
+        lptr = ptr1; 
+    } 
+    while (swapped);
 }
 
 void show_strings(struct STRING *list, int num_strings){
     // print contents of list
+    printf(" ");
     for (int i = 0; i < num_strings; i++){
         printf("%s\n", list[i].s);
     }
