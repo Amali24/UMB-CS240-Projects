@@ -43,7 +43,7 @@ void sort_strings(struct STRING *list, int num_strings){
     for (int i = 0; i < num_strings; i++){
         for(int j = i; j < num_strings; j++){
             if (strlen(list[i].s) > strlen(list[j].s)){
-                dummy_ptr = &list[j];
+                dummy_ptr = list[j].next;
                 list[j].next = &list[i];
                 list[i].next = dummy_ptr;
             }
