@@ -25,6 +25,7 @@ void get_strings(struct STRING *list){
             break;
         }
         list[i].s[j] = cin;
+        j++;
     }
 }
 
@@ -35,7 +36,7 @@ void sort_strings(struct STRING *list){
 void show_strings(struct STRING *list){
     // print contents of list
     printf("show_string\n");
-    printf("%s\n", list[0].s);
+    printf("%c", list[0].s[0]);
 }
 
 int main(){
