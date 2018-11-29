@@ -25,6 +25,7 @@ int get_strings(struct STRING *list){
             continue;
         }
         if (cin == EOF){
+            list[i].next = NULL;
             break;
         }
         list[i].s[j] = cin;
