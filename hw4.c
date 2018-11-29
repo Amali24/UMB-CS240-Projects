@@ -35,41 +35,40 @@ int get_strings(struct STRING *list){
     return i + 1;
 }
 
-void sort_strings(struct STRING *list, int num_strings){
+void sort_strings(struct STRING *list){
     // ascendingly sort strings by length
 
     int swapped, i; 
-    struct STRING *ptr1; 
-    struct STRING *lptr = NULL; 
+    struct STRING *ptr; 
+    struct STRING *last_ptr = NULL; 
   
-    /* Checking for empty list */
+    // Checkfor empty list */
     if (list->next == NULL) 
         return; 
   
     do
     { 
         swapped = 0; 
-        ptr1 = list; 
+        ptr = list; 
   
-        while (ptr1->next != lptr) 
+        while (ptr->next != last_ptr) 
         { 
-            if (strlen(ptr1->s) > strlen(ptr1->next->s)) 
+            if (strlen(ptr->s) > strlen(ptr->next->s)) 
             {  
-                char* temp = ptr1->s; 
-                ptr1->s = ptr1->next->s; 
-                ptr1->next->s = temp; 
+                char* temp = ptr->s; 
+                ptr->s = ptr->next->s; 
+                ptr->next->s = temp; 
                 swapped = 1; 
             } 
-            ptr1 = ptr1->next; 
+            ptr = ptr->next; 
         } 
-        lptr = ptr1; 
+        last_ptr = ptr; 
     } 
     while (swapped);
 }
 
 void show_strings(struct STRING *list, int num_strings){
     // print contents of list
-    printf(" ");
     for (int i = 0; i < num_strings; i++){
         printf("%s\n", list[i].s);
     }
@@ -87,7 +86,7 @@ int main(){
     }
 
     int num_strings = get_strings(list);
-    sort_strings(list, num_strings);
+    sort_strings(list);
     show_strings(list, num_strings);
 
     return 0;
