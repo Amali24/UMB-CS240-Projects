@@ -19,6 +19,7 @@ int get_strings(struct STRING *list){
         if(cin == ';' ){
             // next
             list[i].s[j] = 0;
+            list[i].next = &list[i+1];
             j = 0;
             i++;
             continue;
@@ -34,11 +35,13 @@ int get_strings(struct STRING *list){
 
 void sort_strings(struct STRING *list, int num_strings){
     // ascendingly sort strings by length
+    for (int i = 0; i < num_strings; i++){
+
+    }
 }
 
 void show_strings(struct STRING *list, int num_strings){
     // print contents of list
-
     for (int i = 0; i < num_strings; i++){
         printf("%s\n", list[i].s);
     }
