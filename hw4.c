@@ -9,7 +9,6 @@ struct STRING{
 int get_strings(struct STRING *list){
     // read from stdin list of strings and store in 
     // linked list given as input
-    printf("called get_strings\n");
 
     char cin;
     int i = 0;
@@ -17,9 +16,7 @@ int get_strings(struct STRING *list){
 
     while(1){
         cin = getchar();
-        printf("got a %c\n", cin);
         if(cin == ';' ){
-            printf("found a semicolon\n");
             // next
             list[i].s[j] = 0;
             j = 0;
@@ -30,7 +27,6 @@ int get_strings(struct STRING *list){
             break;
         }
         list[i].s[j] = cin;
-        printf("list[%d].s[%d] = %c\n",i, j, list[i].s[j]);
         j++;
     }
     return i + 1;
@@ -42,10 +38,9 @@ void sort_strings(struct STRING *list, int num_strings){
 
 void show_strings(struct STRING *list, int num_strings){
     // print contents of list
-    printf("called show_strings\n");
 
     for (int i = 0; i < num_strings; i++){
-        printf("list[%d].s = %s\n", i, list[i].s);
+        printf("%s\n", list[i].s);
     }
 }
 
