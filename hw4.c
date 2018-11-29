@@ -6,7 +6,7 @@ struct STRING{
     struct STRING *next;
 };
 
-void get_strings(struct STRING *list){
+int get_strings(struct STRING *list){
     // read from stdin list of strings and store in 
     // linked list given as input
     printf("called get_strings\n");
@@ -33,16 +33,20 @@ void get_strings(struct STRING *list){
         printf("list[%d].s[%d] = %c\n",i, j, list[i].s[j]);
         j++;
     }
+    return i + 1;
 }
 
-void sort_strings(struct STRING *list){
+void sort_strings(struct STRING *list, int num_strings){
     // ascendingly sort strings by length
 }
 
-void show_strings(struct STRING *list){
+void show_strings(struct STRING *list, int num_strings){
     // print contents of list
-    printf("show_strings\n");
-    printf("list[0].s = %s\n", list[0].s);
+    printf("called show_strings\n");
+
+    for (int i = 0; i < num_strings; i++){
+        printf("list[%d].s = %s\n", i, list[i].s);
+    }
 }
 
 int main(){
@@ -56,9 +60,9 @@ int main(){
         list[i].s = (char*) malloc(MAX_LENGTH * sizeof(char));
     }
 
-    get_strings(list);
-    sort_strings(list);
-    show_strings(list);
+    int num_strings = get_strings(list);
+    sort_strings(list, num_strings);
+    show_strings(list, num_strings);
 
     return 0;
 }
