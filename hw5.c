@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Position{
     int line;
@@ -15,7 +16,22 @@ struct TreeNode{
 };
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
-    
+
+    if (tree == NULL){
+        struct TreeNode *newNode = (struct TreenNode*) malloc(sizeof(struct TreeNode*));
+        
+        newNode->word = (char*) malloc(sizeof(char) * 100);
+        newNode->word = word;
+
+        newNode->position = (struct Position*) malloc(sizeof(struct Position*));
+        newNode->position = &pos;
+
+        newNode->parent = NULL;
+        newNode->left = NULL;
+        newNode->right = NULL;
+    }
+
+
 }
 
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
