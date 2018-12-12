@@ -31,7 +31,14 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
         newNode->right = NULL;
     }
 
+    if (word < tree->word){
+         tree->left  = insert(tree->left, word, pos); 
+    }
+    else if (word > tree->word){
+         tree->right  = insert(tree->right, word, pos); 
+    }
 
+    return tree;
 }
 
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
