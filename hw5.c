@@ -70,10 +70,8 @@ struct TreeNode *removeWord(struct TreeNode *tree, char *word){
 
         struct TreeNode* temp = minValueNode(tree->right); 
   
-        // Copy the inorder successor's content to this node 
         tree->word = temp->word; 
   
-        // Delete the inorder successor 
         tree->right = deleteNode(tree->right, temp->word); 
     } 
     return tree; 
