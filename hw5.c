@@ -88,6 +88,8 @@ int main(){
 
     struct TreeNode *root;
 
+    //TODO: Allocate memory for tree
+
     while (isCommandSection){
         if (fgets(input, MAX_LINE_LENGTH, stdin) == NULL){
             break;
