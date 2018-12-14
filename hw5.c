@@ -95,7 +95,7 @@ int main(){
         char *token = strtok(text[i], delim);
 
         while(token != NULL){
-            printf( " %s\n", token );
+            //printf( " %s\n", token );
     
             token = strtok(NULL, delim);
 
