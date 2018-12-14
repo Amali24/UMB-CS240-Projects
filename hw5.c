@@ -94,17 +94,20 @@ int main(){
         int j = 0;
         char *token = strtok(text[i], delim);
 
-        while(token != NULL){
+        while(1){
             //printf( " %s\n", token );
     
             token = strtok(NULL, delim);
 
+            if(token == NULL) break;
+
             // add token to tree
             struct Position pos;
             pos.line = i + 1;
-            pos.offset = j;
+            pos.offset = j++;
             pos.next = NULL;
 
+            
             root = insertNode(root, token, pos);
         }
 
