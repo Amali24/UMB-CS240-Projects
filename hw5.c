@@ -55,7 +55,7 @@ int main(){
             break;
         }
         
-        if (strcmp(input, "END") == 0){
+        if (strcmp(input, "END\n") == 0){
             isCommandSection = 0;
             continue;
         }
