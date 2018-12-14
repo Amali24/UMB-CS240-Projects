@@ -26,17 +26,19 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
 
     if(strcmp(word, tree->word) < 0){
         // GO LEFT
+        tree = insertNode(tree->left, word, pos);
     }
 
     else if(strcmp(word, tree->word) < 0){
         // GO RIGHT
+        tree = insertNode(tree->right, word, pos);
     }
 
     else{
         // UPDATE NODE
     }
 
-    return NULL;
+    return tree;
 }
 
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
