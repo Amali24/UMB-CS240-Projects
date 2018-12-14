@@ -81,4 +81,21 @@ int main(){
     }
 
     printf("\n");
+
+    // TODO: COMMAND PROCESSING GOES HERE
+
+    char delim[] = " \t\r\n\v\f";
+
+    for (int i = 0; i < num_lines; i++){
+        int j = 0;
+        char *token = strtok(text[i], delim);
+
+        while(token != NULL){
+            printf( " %s\n", token );
+    
+             token = strtok(NULL, delim);
+        }
+
+    }
+    return 0;
 }
