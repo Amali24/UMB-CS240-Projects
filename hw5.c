@@ -54,7 +54,22 @@ struct TreeNode *removeLine(struct TreeNode *tree, int line){
 }
 
 void output(struct TreeNode *tree){
+    // if can go left, do
+    // if can't go left, go right.
+    // if can't go either, print
+    // go up
 
+    while (1){
+        if (tree->left != NULL){
+            tree = tree->left;
+            continue;
+        }
+        if (tree->right != NULL){
+            tree = tree->right;
+            continue;
+        }
+        printf("%s\n", tree->word);
+    }
 }
 
 int main(){
