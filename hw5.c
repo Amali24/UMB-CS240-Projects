@@ -17,6 +17,8 @@ struct TreeNode{
 };
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
+    printf("passed word: %s\n", word);
+    printf("passed position: %d, %d\n", pos.line, pos.offset);
     return NULL;
 }
 
@@ -49,6 +51,8 @@ int main(){
 
     int num_cmds = 0;
     int num_lines = 0;
+
+    struct TreeNode *root;
 
     while (isCommandSection){
         if (fgets(input, MAX_LINE_LENGTH, stdin) == NULL){
@@ -93,7 +97,15 @@ int main(){
         while(token != NULL){
             printf( " %s\n", token );
     
-             token = strtok(NULL, delim);
+            token = strtok(NULL, delim);
+
+            // add token to tree
+            struct Position pos;
+            pos.line = i + 1;
+            pos.offset = j;
+            pos.next = NULL;
+
+            root = insertNode(root, token, pos);
         }
 
     }
