@@ -1,0 +1,7 @@
+TEST COMMAND 1
+TEST COMMAND 2
+END
+This is sample text
+It is for testing
+This is a test
+Test test test

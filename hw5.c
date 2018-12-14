@@ -71,12 +71,12 @@ int main(){
     printf("Commands:\n");
 
     for (int i = 0; i < num_cmds; i++){
-        printf("%s\n", commands[i]);
+        printf("%s", commands[i]);
     }
 
     printf("Text:\n");
 
     for (int i = 0; i < num_lines; i++){
-        printf("%s\n", text[i]);
+        printf("%s", text[i]);
     }
 }
