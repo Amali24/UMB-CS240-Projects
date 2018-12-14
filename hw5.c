@@ -17,20 +17,19 @@ struct TreeNode{
 };
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
-
-    
+    return NULL;
 }
 
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
-    
+    return NULL;
 }
 
 struct TreeNode *removePosition(struct TreeNode *tree, struct Position pos){
-
+    return NULL;
 }
 
 struct TreeNode *removeLine(struct TreeNode *tree, int line){
-
+    return NULL;
 }
 
 void output(struct TreeNode *tree){
