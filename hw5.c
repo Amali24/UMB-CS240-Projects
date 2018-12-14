@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Position{
     int line;
@@ -37,5 +38,46 @@ void output(struct TreeNode *tree){
 }
 
 int main(){
-    
+    const int MAX_NUM_LINES = 1000;
+    const int MAX_NUM_COMMANDS = 100;
+    const int MAX_LINE_LENGTH = 1000;
+
+    char commands[MAX_NUM_COMMANDS][MAX_LINE_LENGTH];
+    char text[MAX_NUM_LINES][MAX_LINE_LENGTH];
+
+    int isCommandSection = 1;
+    char input[MAX_LINE_LENGTH];
+
+    int num_cmds = 0;
+    int num_lines = 0;
+
+    while (isCommandSection){
+        if (fgets(input, MAX_LINE_LENGTH, stdin) == NULL){
+            break;
+        }
+        
+        if (strcmp(input, "END") == 0){
+            isCommandSection = 0;
+            continue;
+        }
+
+        strcpy(commands[num_cmds++], input);
+
+    }
+
+    while (fgets(input, MAX_LINE_LENGTH, stdin) != NULL){
+        strcpy(text[num_lines++], input);
+    }
+
+    printf("Commands:\n");
+
+    for (int i = 0; i < num_cmds; i++){
+        printf("%s\n", commands[i]);
+    }
+
+    printf("Text:\n")
+
+    for (int i = 0; i < num_lines; i++){
+        printf("%s\n", text[i]);
+    }
 }
