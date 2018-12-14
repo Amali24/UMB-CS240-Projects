@@ -75,7 +75,7 @@ int main(){
         printf("%s\n", commands[i]);
     }
 
-    printf("Text:\n")
+    printf("Text:\n");
 
     for (int i = 0; i < num_lines; i++){
         printf("%s\n", text[i]);
