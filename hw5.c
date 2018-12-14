@@ -79,4 +79,6 @@ int main(){
     for (int i = 0; i < num_lines; i++){
         printf("%s", text[i]);
     }
+
+    printf("\n");
 }
