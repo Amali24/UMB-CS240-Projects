@@ -17,8 +17,8 @@ struct TreeNode{
 };
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
-    printf("passed word: %s\n", word);
-    printf("passed position: %d, %d\n", pos.line, pos.offset);
+    //printf("passed word: %s\n", word);
+    //printf("passed position: %d, %d\n", pos.line, pos.offset);
 
     if(tree == NULL){
         return NULL;
@@ -146,5 +146,6 @@ int main(){
         }
 
     }
+    output(root);
     return 0;
 }
