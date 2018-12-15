@@ -58,18 +58,12 @@ void output(struct TreeNode *tree){
     // if can't go left, go right.
     // if can't go either, print
     // go up
+        if (tree != NULL){
+            output(tree->left);
+            printf("%s \n", tree->word);
+            output(tree->right);
+        }
 
-    while (1){
-        if (tree->left != NULL){
-            tree = tree->left;
-            continue;
-        }
-        if (tree->right != NULL){
-            tree = tree->right;
-            continue;
-        }
-        printf("%s\n", tree->word);
-    }
 }
 
 int main(){
