@@ -76,6 +76,7 @@ int main(){
     const int MAX_NUM_LINES = 1000;
     const int MAX_NUM_COMMANDS = 100;
     const int MAX_LINE_LENGTH = 1000;
+    const int MAX_NUM_NODES = 1000;
 
     char commands[MAX_NUM_COMMANDS][MAX_LINE_LENGTH];
     char text[MAX_NUM_LINES][MAX_LINE_LENGTH];
@@ -86,7 +87,6 @@ int main(){
     int num_cmds = 0;
     int num_lines = 0;
 
-    struct TreeNode *root;
 
     //TODO: Allocate memory for tree
 
@@ -108,7 +108,7 @@ int main(){
         strcpy(text[num_lines++], input);
     }
 
-    printf("Commands:\n");
+    /*printf("Commands:\n");
 
     for (int i = 0; i < num_cmds; i++){
         printf("%s", commands[i]);
@@ -120,9 +120,17 @@ int main(){
         printf("%s", text[i]);
     }
 
-    printf("\n");
+    printf("\n");*/
 
-    // TODO: COMMAND PROCESSING GOES HERE
+
+    struct TreeNode *root;
+
+    root = (struct TreeNode*) malloc(MAX_NUM_NODES);
+    root->position = (struct Position*) malloc(MAX_NUM_NODES);
+    root->word = (char*) malloc(MAX_LINE_LENGTH);
+    root->position = NULL;
+    root->left = NULL;
+    root->right = NULL;
 
     char delim[] = " \t\r\n\v\f";
 
@@ -148,6 +156,9 @@ int main(){
         }
 
     }
+
+    // TODO: COMMAND PROCESSING GOES HERE
+
     output(root);
     return 0;
 }
