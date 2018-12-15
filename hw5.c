@@ -105,6 +105,26 @@ void outputAlpha(struct TreeNode *tree){
 
 }
 
+struct TreeNode* findByPosition(struct TreeNode *tree, int line, int offset){
+    if (tree == NULL) return NULL;
+    struct Position *pos = tree->position;
+    while (pos != NULL){
+        if (pos->line == line && pos->offset == offset){
+            return tree;
+        }
+        pos = pos->next;
+    }
+    struct TreeNode *node = findByPosition(tree->left, line, offset);
+    if (node == NULL) return getWordNode(tree->right, line, offset);
+    else return node;
+}
+
+void output(struct TreeNode *tree){
+    int line_num = 0;
+    int offset = 0;
+
+}
+
 int main(){
     const int MAX_NUM_LINES = 1000;
     const int MAX_NUM_COMMANDS = 100;
