@@ -21,9 +21,10 @@ struct TreeNode* newNode(char* word, struct Position pos){
     //printf("made a node\n");
     new_node->position = (struct Position*) malloc(1000 * sizeof(struct Position));
     //printf("made a pos\n");
-    new_node->position[0] = pos;
+    new_node->position->line = pos.line;
+    new_node->position->offset = pos.offset;
     //printf("assigned a pos\n");
-    new_node->position[0].next = NULL;
+    new_node->position->next = NULL;
     new_node->word = (char*) malloc(100 * sizeof(char));
     //printf("made a string\n");
     strcpy(new_node->word, word);
@@ -31,6 +32,13 @@ struct TreeNode* newNode(char* word, struct Position pos){
     new_node->left = new_node->right = NULL;
     //printf("set the branches to null\n");
     return new_node;
+}
+
+struct Position* newPosition(int line, int offset){
+    struct Position *pos = (struct Position*) malloc(sizeof(struct Position*));
+    pos->line = line;
+    pos->offset = offset;
+    pos->next = NULL;
 }
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
@@ -138,10 +146,11 @@ int main(){
 
 
     struct TreeNode *root;
-
     root = NULL;
 
     char delim[] = " \t\r\n\v\f";
+
+    root = newNode(NULL, *newPosition(0,0));
 
     for (int i = 0; i < num_lines; i++){
         int j = 0;
@@ -161,7 +170,7 @@ int main(){
             pos.next = NULL;
 
             
-            root = insertNode(root, token, pos);
+            insertNode(root, token, pos);
         }
 
     }
