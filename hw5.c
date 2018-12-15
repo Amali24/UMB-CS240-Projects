@@ -54,12 +54,12 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
     }
 
     if(strcmp(word, tree->word) < 0){
-        printf("word <, going left\n");
+        printf("%s < %s, going left\n", word, tree->word);
         tree->left = insertNode(tree->left, word, pos);
     }
 
     else if(strcmp(word, tree->word) > 0){
-        printf("word >, going right\n"); 
+        printf("%s > %s, going right\n", word, tree->word);
         tree->right = insertNode(tree->right, word, pos);
     }
 
