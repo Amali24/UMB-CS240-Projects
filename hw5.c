@@ -23,6 +23,7 @@ struct TreeNode* newNode(char* word, struct Position pos){
     //printf("made a pos\n");
     new_node->position[0] = pos;
     //printf("assigned a pos\n");
+    new_node->position[0].next = NULL;
     new_node->word = (char*) malloc(100 * sizeof(char));
     //printf("made a string\n");
     strcpy(new_node->word, word);
@@ -51,7 +52,10 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
     }
 
     else{
-        // UPDATE NODE
+        while(tree->position->next != NULL){
+            tree->position = tree->position->next;
+        }
+        tree->position->next = &pos;
     }
 
     return tree;
