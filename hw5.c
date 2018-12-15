@@ -190,5 +190,5 @@ int main(){
     // TODO: COMMAND PROCESSING GOES HERE
 
     outputAlpha(root);
-    return 0;
+    return 0; 
 }
