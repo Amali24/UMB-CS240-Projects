@@ -36,9 +36,13 @@ struct TreeNode* newNode(char* word, struct Position pos){
 
 struct Position* newPosition(int line, int offset){
     struct Position *pos = (struct Position*) malloc(sizeof(struct Position*));
+    printf("Made a new postion\n");
     pos->line = line;
+    printf("set line to %d\n", line);
     pos->offset = offset;
+    printf("set offset to %d\n", offset);
     pos->next = NULL;
+    printf("set next to null\n\n");
     return pos;
 }
 
@@ -67,8 +71,10 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
         printf("word found\n");
         while(tree->position->next != NULL){
             tree->position = tree->position->next;
+            printf("going to next position\n");
         }
-        tree->position->next = &pos;
+        tree->position->next = newPosition(pos.line, pos.offset);
+        printf("added position\n\n");
     }
 
     return tree;
@@ -93,7 +99,7 @@ void outputAlpha(struct TreeNode *tree){
     // go up
         if (tree != NULL){
             outputAlpha(tree->left);
-            printf("%s \n", tree->word);
+            printf("%s @ (%d, %d)\n", tree->word, tree->position->line, tree->position->offset);
             outputAlpha(tree->right);
         }
 
