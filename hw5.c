@@ -16,12 +16,21 @@ struct TreeNode{
     struct TreeNode *right;
 };
 
+struct TreeNode* newNode(char* word, struct Position pos){
+    struct TreeNode *new_node = (struct TreeNode*) malloc(sizeof(struct TreeNode));
+    new_node->position = (struct Position*) malloc(1000 * sizeof(struct Position));
+    new_node->position[0] = pos;
+    strcpy(new_node->word, word);
+    new_node->left = new_node->right = NULL;
+    
+}
+
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
     //printf("passed word: %s\n", word);
     //printf("passed position: %d, %d\n", pos.line, pos.offset);
 
     if(tree == NULL){
-        return NULL;
+        tree = newNode(word, pos);
     }
 
     if(strcmp(word, tree->word) < 0){
@@ -119,12 +128,7 @@ int main(){
 
     struct TreeNode *root;
 
-    root = (struct TreeNode*) malloc(MAX_NUM_NODES);
-    root->position = (struct Position*) malloc(MAX_NUM_NODES);
-    root->word = (char*) malloc(MAX_LINE_LENGTH);
-    root->position = NULL;
-    root->left = NULL;
-    root->right = NULL;
+    root = NULL;
 
     char delim[] = " \t\r\n\v\f";
 
