@@ -22,7 +22,7 @@ struct TreeNode* newNode(char* word, struct Position pos){
     new_node->position[0] = pos;
     strcpy(new_node->word, word);
     new_node->left = new_node->right = NULL;
-    
+    return new_node;
 }
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
