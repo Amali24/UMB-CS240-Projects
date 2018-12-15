@@ -39,6 +39,7 @@ struct Position* newPosition(int line, int offset){
     pos->line = line;
     pos->offset = offset;
     pos->next = NULL;
+    return pos;
 }
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
