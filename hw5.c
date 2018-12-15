@@ -93,10 +93,14 @@ void outputAlpha(struct TreeNode *tree){
     // go up
         if (tree != NULL){
             outputAlpha(tree->left);
-            printf("%s \n", tree->word);
+            printf("%s @ (%d, %d)\n", tree->word, tree->position[0].line, tree->position[0].offset);
             outputAlpha(tree->right);
         }
 
+}
+
+void output(struct TreeNode *tree){
+    
 }
 
 int main(){
