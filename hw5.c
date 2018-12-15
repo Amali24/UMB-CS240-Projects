@@ -28,9 +28,9 @@ struct TreeNode* newNode(char* word, struct Position pos){
     new_node->word = (char*) malloc(100 * sizeof(char));
     printf("made a string\n");
     strcpy(new_node->word, word);
-    printf("copied string to node\n");
+    printf("copied string \"%s\" to node\n", word);
     new_node->left = new_node->right = NULL;
-    printf("set the branches to null\n");
+    printf("set the branches to null\n\n");
     return new_node;
 }
 
@@ -44,10 +44,13 @@ struct Position* newPosition(int line, int offset){
 
 struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position pos){
     printf("passed word: %s\n", word);
-    printf("passed position: %d, %d\n", pos.line, pos.offset);
+    printf("passed position: %d, %d\n\n", pos.line, pos.offset);
 
     if(tree == NULL){
-        return newNode(word, pos);
+        printf("tree was null\n");
+        struct TreeNode *temp = newNode(word, pos);
+        printf("made new node...\n\n");
+        return temp;
     }
 
     if(strcmp(word, tree->word) < 0){
@@ -60,7 +63,7 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
         tree->right = insertNode(tree->right, word, pos);
     }
 
-    else{
+    else if (strcmp(word, tree->word) == 0){
         while(tree->position->next != NULL){
             tree->position = tree->position->next;
         }
@@ -143,24 +146,29 @@ int main(){
         printf("%s", text[i]);
     }
 
-    printf("\n");
+    printf("\n\n\n");
 
 
-    struct TreeNode *root;
-    root = NULL;
+    struct TreeNode *root = NULL;
 
     char delim[] = " \t\r\n\v\f";
 
     for (int i = 0; i < num_lines; i++){
         int j = 0;
+        printf("new for loop (156), i = %d, j = %d\n", i, j);
+        printf("current line is \"%s\"\n", text[i]);
+
         char *token = strtok(text[i], delim);
 
         while(1){
             printf("Token: %s\n", token );
 
             // add token to tree
-            struct Position *pos = newPosition(i + 1, j++);
-            
+            struct Position *pos = newPosition(i + 1, j);
+            printf("made a pos with %d, %d\n\n", i + 1, j);
+            j++;
+
+
             root = insertNode(root, token, *pos);
     
             token = strtok(NULL, delim);
