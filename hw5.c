@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+int num_lines = 0;
+
+
 struct Position{
     int line;
     int offset;
@@ -120,9 +123,17 @@ struct TreeNode* findByPosition(struct TreeNode *tree, int line, int offset){
 }
 
 void output(struct TreeNode *tree){
-    int line_num = 0;
-    int offset = 0;
-
+    for (int line = 1; line <= num_lines; line++){
+        int offset = 0;
+        while(1){
+            struct TreeNode *node = findByPosition(tree, line, offset++);
+            if (node == NULL) break;
+            offset ++;
+            if (offset >= 2) printf(" ");
+            printf("%s", node->word);
+        }
+        if (line < num_lines) printf("\n");
+    }
 }
 
 int main(){
@@ -138,7 +149,6 @@ int main(){
     char input[MAX_LINE_LENGTH];
 
     int num_cmds = 0;
-    int num_lines = 0;
 
 
     //TODO: Allocate memory for tree
