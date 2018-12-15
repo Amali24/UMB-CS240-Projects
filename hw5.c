@@ -93,14 +93,29 @@ void outputAlpha(struct TreeNode *tree){
     // go up
         if (tree != NULL){
             outputAlpha(tree->left);
-            printf("%s @ (%d, %d)\n", tree->word, tree->position[0].line, tree->position[0].offset);
+            printf("%s @ (%d, %d)\n", tree->word, tree->position->line, tree->position->offset);
             outputAlpha(tree->right);
         }
 
 }
 
 void output(struct TreeNode *tree){
+    const int MAX_NUM_LINES = 1000;
+    const int MAX_LINE_LENGTH = 1000;
+
+    char output_array[MAX_NUM_LINES][MAX_LINE_LENGTH][MAX_LINE_LENGTH];
     
+    if (tree != NULL){
+        output(tree->left);
+        strcpy(output_array[tree->position->line - 1][tree->position->offset], tree->word);
+        output(tree->right);
+    }
+
+    for(int i = 0; i < MAX_NUM_LINES; i++){
+        for (int j = 0; j < MAX_LINE_LENGTH; j++){
+            printf("%s", output_array[i][j]);
+        }
+    }
 }
 
 int main(){
@@ -187,6 +202,6 @@ int main(){
 
     // TODO: COMMAND PROCESSING GOES HERE
 
-    outputAlpha(root);
+    output(root);
     return 0;
 }
