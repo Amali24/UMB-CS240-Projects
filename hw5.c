@@ -86,15 +86,15 @@ struct TreeNode *removeLine(struct TreeNode *tree, int line){
     return NULL;
 }
 
-void output(struct TreeNode *tree){
+void outputAlpha(struct TreeNode *tree){
     // if can go left, do
     // if can't go left, go right.
     // if can't go either, print
     // go up
         if (tree != NULL){
-            output(tree->left);
+            outputAlpha(tree->left);
             printf("%s \n", tree->word);
-            output(tree->right);
+            outputAlpha(tree->right);
         }
 
 }
@@ -183,6 +183,6 @@ int main(){
 
     // TODO: COMMAND PROCESSING GOES HERE
 
-    output(root);
+    outputAlpha(root);
     return 0;
 }
