@@ -118,7 +118,7 @@ struct TreeNode* findByPosition(struct TreeNode *tree, int line, int offset){
         pos = pos->next;
     }
     struct TreeNode *node = findByPosition(tree->left, line, offset);
-    if (node == NULL) return getWordNode(tree->right, line, offset);
+    if (node == NULL) return findByPosition(tree->right, line, offset);
     else return node;
 }
 
@@ -220,5 +220,7 @@ int main(){
     // TODO: COMMAND PROCESSING GOES HERE
 
     outputAlpha(root);
+    output(root);
+    printf("\n");
     return 0; 
 }
