@@ -1,3 +1,8 @@
+/*
+I didn't finish any of the commands, but I did as much as I could in the time given.
+I have other finals and assignments to work on so I couldn't spend any more time on this.
+I spent probably around 10 hours on getting it this far.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -359,7 +364,6 @@ int main(){
         }
     }*/
 
-    printf("\n\n");
     //outputAlpha(root);
     output(root);
     printf("\n");
