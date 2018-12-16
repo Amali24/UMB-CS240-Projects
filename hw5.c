@@ -218,6 +218,22 @@ int main(){
     }
 
     // TODO: COMMAND PROCESSING GOES HERE
+    printf("commands:\n");
+    for(int i = 0; i < num_cmds; i++){
+        
+        char *token = strtok(commands[i], delim);
+
+
+        if(strcmp(token, "RL")==0){
+            //remove line
+        }
+        else if (strcmp(token, "R") == 0){
+            //remove word
+        }
+        else if(strcmp(token, "I") == 0){
+            //insert word
+        }
+    }
 
     //outputAlpha(root);
     output(root);
