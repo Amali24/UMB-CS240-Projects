@@ -226,9 +226,26 @@ int main(){
 
         if(strcmp(token, "RL")==0){
             //remove line
+            token = strtok(NULL, delim);
+            int line_rem = atoi(token);
+            printf("removing line %d\n", line_rem);
         }
         else if (strcmp(token, "R") == 0){
             //remove word
+            token = strtok(NULL, delim);
+            if (token[0] > '0' && token[0] < '9'){
+                //remove by position
+                int pos_line = atoi(token);
+                token = strtok(NULL, delim);
+                int pos_off = atoi(token);
+                printf("removing word @ (%d, %d)\n", pos_line, pos_off);
+            }
+            else{
+                //remove by word
+                char* word_rem;
+                strcpy(word_rem, token);
+                printf("removing word \"%s\"\n", word_rem);
+            }
         }
         else if(strcmp(token, "I") == 0){
             //insert word
