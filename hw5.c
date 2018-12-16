@@ -139,12 +139,13 @@ void output(struct TreeNode *tree){
 }
 
 int main(){
-    const int MAX_NUM_LINES = 1000;
+    const int MAX_NUM_LINES = 100;
     const int MAX_NUM_COMMANDS = 100;
-    const int MAX_LINE_LENGTH = 1000;
+    const int MAX_CMD_LENGTH = 100;
+    const int MAX_LINE_LENGTH = 10000;
     const int MAX_NUM_NODES = 1000;
 
-    char commands[MAX_NUM_COMMANDS][MAX_LINE_LENGTH];
+    char commands[MAX_NUM_COMMANDS][MAX_CMD_LENGTH];
     char text[MAX_NUM_LINES][MAX_LINE_LENGTH];
 
     int isCommandSection = 1;
@@ -220,35 +221,48 @@ int main(){
     // TODO: COMMAND PROCESSING GOES HERE
     printf("commands:\n");
     for(int i = 0; i < num_cmds; i++){
+        //printf("iteration #%d of command for-loop\n", i + 1);
         
-        char *token = strtok(commands[i], delim);
+        char *tok = strtok(commands[i], delim);
+        //printf("token = \"%s\"\n", tok);
 
 
-        if(strcmp(token, "RL")==0){
+        if(strcmp(tok, "RL")==0){
             //remove line
-            token = strtok(NULL, delim);
-            int line_rem = atoi(token);
+            tok = strtok(NULL, delim);
+            int line_rem = atoi(tok);
             printf("removing line %d\n", line_rem);
         }
-        else if (strcmp(token, "R") == 0){
+        else if (strcmp(tok, "R") == 0){
             //remove word
-            token = strtok(NULL, delim);
-            if (token[0] > '0' && token[0] < '9'){
+            tok = strtok(NULL, delim);
+            if (tok[0] > '0' && tok[0] < '9'){
                 //remove by position
-                int pos_line = atoi(token);
-                token = strtok(NULL, delim);
-                int pos_off = atoi(token);
+                int pos_line = atoi(tok);
+                tok = strtok(NULL, delim);
+                int pos_off = atoi(tok);
                 printf("removing word @ (%d, %d)\n", pos_line, pos_off);
             }
             else{
                 //remove by word
-                char* word_rem;
-                strcpy(word_rem, token);
+                char* word_rem = (char*) malloc(MAX_CMD_LENGTH * sizeof(char));
+                strcpy(word_rem, tok);
                 printf("removing word \"%s\"\n", word_rem);
             }
         }
-        else if(strcmp(token, "I") == 0){
+        else if(strcmp(tok, "I") == 0){
             //insert word
+            tok = strtok(NULL, delim);
+            char* word_ins = (char*) malloc(MAX_CMD_LENGTH * sizeof(char));
+            strcpy(word_ins, tok);
+
+            tok = strtok(NULL, delim);
+            int pos_line = atoi(tok);
+            tok = strtok(NULL, delim);
+            int pos_off = atoi(tok);
+
+            printf("inserting word \"%s\" @ (%d, %d)\n", word_ins, pos_line, pos_off);
+
         }
     }
 
