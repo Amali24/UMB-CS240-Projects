@@ -84,36 +84,57 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
 }
 
 struct TreeNode* getSmallestNode(struct TreeNode *tree){
+    printf("looking for smallest node\n");
     struct TreeNode *current = tree;
     while (current->left != NULL){
         current = current->left;
+        printf("left found, going left\n");
+
     }
-     return current;
+    printf("no left found, returning \"%s\" node\n", current->word);
+    return current;
 }
 
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
-    if (tree == NULL) return NULL;
+    if (tree == NULL){ 
+        printf("hit base case, tree == NULL\n");
+        return NULL;
+    }
 
     if (strcmp(word, tree->word) < 0){
+        printf("%s < %s, going left\n", word, tree->word);
         tree->left = removeWord(tree->left, word);
     }
     else if (strcmp(word, tree->word) > 0){
+        printf("%s > %s, going right\n", word, tree->word);
         tree->right = removeWord(tree->right, word);
     }
 
     else{
+        printf("found %s\n", word);
+
         if(tree->left == NULL){
+            printf("node has no left\n");
             struct TreeNode *temp = tree->right;
+            printf("temp = right\n");
             free(tree);
-            return temp;
-        }
-        if(tree->right == NULL){
-            struct TreeNode *temp = tree->left;
-            free(tree);
+            printf("deleted node\n");
             return temp;
         }
 
+        if(tree->right == NULL){
+            printf("node has no right\n");
+            struct TreeNode *temp = tree->left;
+            printf("temp = right\n"); 
+            free(tree);
+            printf("deleted node\n");
+            return temp;
+        }
+
+        printf("node has two children: \"%s\" and \"%s\"\n", tree->left->word, tree->right->word);
+
         struct TreeNode *temp = getSmallestNode(tree->right);
+        printf("Temp's word = \"%s\"\n", temp->word);
         tree->word = temp->word;
         tree->position = temp->position;
 
@@ -302,8 +323,9 @@ int main(){
         }
     }
 
+    printf("\n\n");
     //outputAlpha(root);
-    output(root);
+    //output(root);
     printf("\n");
     return 0; 
 }

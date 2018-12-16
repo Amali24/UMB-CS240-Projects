@@ -1,8 +1,4 @@
-I hello 3 5
-I hello 4 50
 R test
-R 20 1
-RL 5
 END
 This is my test text
 It is for testing
