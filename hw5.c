@@ -95,51 +95,103 @@ struct TreeNode* getSmallestNode(struct TreeNode *tree){
     return current;
 }
 
+struct TreeNode* findByPosition(struct TreeNode *tree, int line, int offset){
+    if (tree == NULL) {
+        return NULL;
+    }   
+    struct Position *pos = tree->position;
+    while (pos != NULL){
+        if (pos->line == line && pos->offset == offset){
+            return tree;
+        }
+        pos = pos->next;
+    }
+    struct TreeNode *node = findByPosition(tree->left, line, offset);
+    if (node == NULL) return findByPosition(tree->right, line, offset);
+    else return node;
+}
+
+struct TreeNode* updatePositions(struct TreeNode* tree, int deleted_line, int deleted_offset){
+    //printf("\n\ncalled update positions @(%d, %d)\n", deleted_line, deleted_offset);
+    int max_num_words = 10;
+    struct TreeNode *temp = NULL;
+    for (int i = max_num_words; i > deleted_offset; i--){
+        //printf("iteration #%d of update for-loop\n", i);
+        temp = findByPosition(tree, deleted_line, i);
+        if(temp == NULL){
+            //printf("temp was null, continuing\n");
+            continue;
+        }
+        //printf("before decrement: temp->word =  \"%s\" @ (%d,%d)\n", 
+        //    temp->word, temp->position->line, temp->position->offset);
+
+        temp->position->offset = temp->position->offset - 1;
+
+        //printf("after decrement: temp->word =  \"%s\" @ (%d,%d)\n", 
+        //    temp->word, temp->position->line, temp->position->offset);
+    }
+    return temp;
+}
+
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
     if (tree == NULL){ 
-        printf("hit base case, tree == NULL\n");
+        //printf("hit base case, tree == NULL\n");
         return NULL;
     }
 
     if (strcmp(word, tree->word) < 0){
-        printf("%s < %s, going left\n", word, tree->word);
+        //printf("%s < %s, going left\n", word, tree->word);
         tree->left = removeWord(tree->left, word);
     }
     else if (strcmp(word, tree->word) > 0){
-        printf("%s > %s, going right\n", word, tree->word);
+        //printf("%s > %s, going right\n", word, tree->word);
         tree->right = removeWord(tree->right, word);
     }
 
     else{
-        printf("found %s\n", word);
+        //printf("found %s\n", word);
 
         if(tree->left == NULL){
-            printf("node has no left\n");
+            //printf("node has no left\n");
             struct TreeNode *temp = tree->right;
-            printf("temp = right\n");
+            //printf("temp = right\n");
+            while (tree->position != NULL){
+                tree = updatePositions(tree, tree->position->line, tree->position->offset);
+                tree->position = tree->position->next;
+            }
             free(tree);
-            printf("deleted node\n");
+            //printf("deleted node\n");
             return temp;
         }
 
         if(tree->right == NULL){
-            printf("node has no right\n");
+            //printf("node has no right\n");
             struct TreeNode *temp = tree->left;
-            printf("temp = right\n"); 
+            //printf("temp = right\n"); 
+                while (tree->position != NULL){
+                tree = updatePositions(tree, tree->position->line, tree->position->offset);
+                tree->position = tree->position->next;
+            }
             free(tree);
-            printf("deleted node\n");
+            //printf("deleted node\n");
             return temp;
         }
 
-        printf("node has two children: \"%s\" and \"%s\"\n", tree->left->word, tree->right->word);
+        //printf("node has two children: \"%s\" and \"%s\"\n", tree->left->word, tree->right->word);
+
+        while (tree->position != NULL){
+            tree = updatePositions(tree, tree->position->line, tree->position->offset);
+            tree->position = tree->position->next;
+        }
 
         struct TreeNode *temp = getSmallestNode(tree->right);
-        printf("Temp's word = \"%s\"\n", temp->word);
+        //printf("Temp's word = \"%s\"\n", temp->word);
         tree->word = temp->word;
         tree->position = temp->position;
 
         tree->right = removeWord(tree->right, temp->word);
     }
+
     return tree;
 }
 
@@ -162,22 +214,6 @@ void outputAlpha(struct TreeNode *tree){
             outputAlpha(tree->right);
         }
 
-}
-
-struct TreeNode* findByPosition(struct TreeNode *tree, int line, int offset){
-    if (tree == NULL) {
-        return NULL;
-    }   
-    struct Position *pos = tree->position;
-    while (pos != NULL){
-        if (pos->line == line && pos->offset == offset){
-            return tree;
-        }
-        pos = pos->next;
-    }
-    struct TreeNode *node = findByPosition(tree->left, line, offset);
-    if (node == NULL) return findByPosition(tree->right, line, offset);
-    else return node;
 }
 
 void output(struct TreeNode *tree){
@@ -275,8 +311,8 @@ int main(){
     }
 
     // TODO: COMMAND PROCESSING GOES HERE
-    printf("commands:\n");
-    for(int i = 0; i < num_cmds; i++){
+    //printf("commands:\n");
+   /*for(int i = 0; i < num_cmds; i++){
         //printf("iteration #%d of command for-loop\n", i + 1);
         
         char *tok = strtok(commands[i], delim);
@@ -287,7 +323,7 @@ int main(){
             //remove line
             tok = strtok(NULL, delim);
             int line_rem = atoi(tok);
-            printf("removing line %d\n", line_rem);
+            //printf("removing line %d\n", line_rem);
         }
         else if (strcmp(tok, "R") == 0){
             //remove word
@@ -297,13 +333,13 @@ int main(){
                 int pos_line = atoi(tok);
                 tok = strtok(NULL, delim);
                 int pos_off = atoi(tok);
-                printf("removing word @ (%d, %d)\n", pos_line, pos_off);
+                //printf("removing word @ (%d, %d)\n", pos_line, pos_off);
             }
             else{
                 //remove by word
                 char* word_rem = (char*) malloc(MAX_CMD_LENGTH * sizeof(char));
                 strcpy(word_rem, tok);
-                printf("removing word \"%s\"\n", word_rem);
+                //printf("removing word \"%s\"\n", word_rem);
                 removeWord(root, word_rem);
             }
         }
@@ -318,14 +354,14 @@ int main(){
             tok = strtok(NULL, delim);
             int pos_off = atoi(tok);
 
-            printf("inserting word \"%s\" @ (%d, %d)\n", word_ins, pos_line, pos_off);
+            //printf("inserting word \"%s\" @ (%d, %d)\n", word_ins, pos_line, pos_off);
 
         }
-    }
+    }*/
 
     printf("\n\n");
     //outputAlpha(root);
-    //output(root);
+    output(root);
     printf("\n");
     return 0; 
 }
