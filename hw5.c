@@ -83,8 +83,43 @@ struct TreeNode *insertNode(struct TreeNode *tree, char *word, struct Position p
     return tree;
 }
 
+struct TreeNode* getSmallestNode(struct TreeNode *tree){
+    struct TreeNode *current = tree;
+    while (current->left != NULL){
+        current = current->left;
+    }
+     return current;
+}
+
 struct TreeNode *removeWord(struct TreeNode *tree, char *word){
-    return NULL;
+    if (tree == NULL) return NULL;
+
+    if (strcmp(word, tree->word) < 0){
+        tree->left = removeWord(tree->left, word);
+    }
+    else if (strcmp(word, tree->word) > 0){
+        tree->right = removeWord(tree->right, word);
+    }
+
+    else{
+        if(tree->left == NULL){
+            struct TreeNode *temp = tree->right;
+            free(tree);
+            return temp;
+        }
+        if(tree->right == NULL){
+            struct TreeNode *temp = tree->left;
+            free(tree);
+            return temp;
+        }
+
+        struct TreeNode *temp = getSmallestNode(tree->right);
+        tree->word = temp->word;
+        tree->position = temp->position;
+
+        tree->right = removeWord(tree->right, temp->word);
+    }
+    return tree;
 }
 
 struct TreeNode *removePosition(struct TreeNode *tree, struct Position pos){
@@ -248,6 +283,7 @@ int main(){
                 char* word_rem = (char*) malloc(MAX_CMD_LENGTH * sizeof(char));
                 strcpy(word_rem, tok);
                 printf("removing word \"%s\"\n", word_rem);
+                removeWord(root, word_rem);
             }
         }
         else if(strcmp(tok, "I") == 0){

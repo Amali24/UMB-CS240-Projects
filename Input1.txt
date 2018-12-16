@@ -1,6 +1,6 @@
 I hello 3 5
 I hello 4 50
-R world
+R test
 R 20 1
 RL 5
 END
