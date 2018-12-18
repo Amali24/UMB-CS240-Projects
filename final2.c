@@ -46,9 +46,11 @@ struct Node *insertNode(struct Node* head, struct Node *newNode){
 void output(struct Node* head){
     printf("\nwe're in output\n");
     while(1){
+        printf("loop!\n");
+        if (head == NULL) break;
         printf("%s,%d", head->word, head->position);
         head = head->next;
-        if (head == NULL) break;
+        
         printf("\n");
     }
 }
@@ -76,7 +78,7 @@ int main (){
 
     int i = 1; 
     while(1){
-        insertNode(head, newNode(token, i++));
+        head = insertNode(head, newNode(token, i++));
         printf("inserted node with \"%s\" @ %d\n", token, i - 1);
 
         //printf("%s,%d", token, i++);
