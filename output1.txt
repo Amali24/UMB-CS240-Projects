@@ -1,0 +1,7 @@
+cs,2
+umb,3
+edu/cs240/,4
+ An account has been created for each student,5
+To see and submit the homework, log in http://programming,1
+ The account information (username, password) has been emailed to you by TA,6
+ When you submit your code, it will be evaluated by the auto-judge and you will see your score and if your code has an error or succeed,7

@@ -17,7 +17,7 @@ struct Node* newNode(char* word, int position){
     new_node->position = position;
     
     int i = 0;
-    while (word[i] != 0){
+    while (*(word+i) != 0){
         i++;
     }
 
@@ -27,30 +27,31 @@ struct Node* newNode(char* word, int position){
 }
 
 struct Node *insertNode(struct Node* head, struct Node *newNode){
-    if (head == NULL){
-        newNode->next = head;
-        return newNode;
-    }
+   if(head == NULL){
+       return newNode;
+   }
+   if(newNode->length < head->length){
+       newNode->next = head;
+       return newNode;
+   }
+   struct Node* current = head;
+   while(current->next != NULL && current->next->length <= newNode ->length){
+       current = current -> next;
+   }
 
-    struct Node* current = head;
-    while (current->next != NULL && current->next->length <= newNode->length){
-        current = current->next;
-    }
+   newNode->next = current->next;
+   current->next = newNode;
 
-    newNode->next = current->next;
-    current->next = newNode;
-
-    return head;
+   return head;
 }
 
 void output(struct Node* head){
-    printf("\nwe're in output\n");
+    //printf("\nwe're in output\n");
     while(1){
-        printf("loop!\n");
-        if (head == NULL) break;
+        //printf("loop!\n");
         printf("%s,%d", head->word, head->position);
         head = head->next;
-        
+        if (head == NULL) break;        
         printf("\n");
     }
 }
@@ -60,7 +61,7 @@ int main (){
 
     char* delim = (char*) malloc(sizeof(char) * MAX_LINE_LEN);
     char* text = (char*) malloc(sizeof(char) * MAX_LINE_LEN);
-    printf("malloc'ed strings\n");
+    //printf("malloc'ed strings\n");
 
     delim = fgets(delim, MAX_LINE_LEN, stdin);
     text = fgets(text, MAX_LINE_LEN, stdin);
@@ -74,19 +75,19 @@ int main (){
     char *token = strtok(text, delim);
 
     struct Node* head = NULL;
-    printf("made a head node\n");
+    //printf("made a head node\n");
 
     int i = 1; 
     while(1){
         head = insertNode(head, newNode(token, i++));
-        printf("inserted node with \"%s\" @ %d\n", token, i - 1);
+        //printf("inserted node with \"%s\" @ %d\n", token, i - 1);
 
         //printf("%s,%d", token, i++);
 
         token = strtok(NULL, delim);
 
         if(token == NULL){
-            printf("null token breaking \n");
+            //printf("null token breaking \n");
             break;
         }
 
