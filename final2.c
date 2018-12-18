@@ -11,7 +11,7 @@ struct Node{
 
 struct Node* newNode(char* word, int position){
     struct Node *new_node = (struct Node*) malloc(sizeof(struct Node));
-    new_node->word = (char*) malloc(100 * sizeof(char));
+    new_node->word = (char*) malloc(10000 * sizeof(char));
     strcpy(new_node->word, word);
     new_node->next = NULL;
     new_node->position = position;
@@ -44,6 +44,7 @@ struct Node *insertNode(struct Node* head, struct Node *newNode){
 }
 
 void output(struct Node* head){
+    printf("\nwe're in output\n");
     while(1){
         printf("%s,%d", head->word, head->position);
         head = head->next;
@@ -57,9 +58,11 @@ int main (){
 
     char* delim = (char*) malloc(sizeof(char) * MAX_LINE_LEN);
     char* text = (char*) malloc(sizeof(char) * MAX_LINE_LEN);
+    printf("malloc'ed strings\n");
 
     delim = fgets(delim, MAX_LINE_LEN, stdin);
     text = fgets(text, MAX_LINE_LEN, stdin);
+    //printf("text: %s\n", text);
 
     if (delim == NULL || text == NULL){
         return 1;
@@ -69,14 +72,23 @@ int main (){
     char *token = strtok(text, delim);
 
     struct Node* head = NULL;
+    printf("made a head node\n");
 
     int i = 1; 
     while(1){
         insertNode(head, newNode(token, i++));
+        printf("inserted node with \"%s\" @ %d\n", token, i - 1);
+
+        //printf("%s,%d", token, i++);
 
         token = strtok(NULL, delim);
 
-        if(token == NULL) break;
+        if(token == NULL){
+            printf("null token breaking \n");
+            break;
+        }
+
+        //printf("\n");
     }
 
     output(head);

@@ -1,5 +1,2 @@
 .
-To see and submit the homework, log in http://programming.cs.umb.edu/cs240/. An account 
-has been created for each student. The account information (username, password) has been
-emailed to you by TA. When you submit your code, it will be evaluated by the auto-judge 
-and you will see your score and if your code has an error or succeed.
+To see and submit the homework, log in http://programming.cs.umb.edu/cs240/. An account has been created for each student. The account information (username, password) has been emailed to you by TA. When you submit your code, it will be evaluated by the auto-judge and you will see your score and if your code has an error or succeed.
